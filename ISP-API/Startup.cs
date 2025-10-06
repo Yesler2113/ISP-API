@@ -44,6 +44,11 @@ public class Startup
             options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
         // add custom services
         services.AddTransient<IUserService, UserService>();
+        services.AddTransient<IPlanService, PlanService>();
+        
+        // AutoMapper
+        services.AddAutoMapper(typeof(Startup));
+        
 
 
         // Services
