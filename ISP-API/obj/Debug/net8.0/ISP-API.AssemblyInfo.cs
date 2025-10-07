@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISP-API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5435280f6f06ef7f5616762333276e69a3572968")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b282bad5f753837d22cc20c46862b9ec3a469b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISP-API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISP-API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

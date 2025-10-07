@@ -33,10 +33,8 @@ public class ClienteCreateDto
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
     public decimal CostoInstalacion { get; set; }
     
-    public List<ClientePlanDto>? PlanesContratados { get; set; }
+    public List<Guid>? PlanesContratadosIds { get; set; }
     
-    public List<EquipoClienteDto>? EquiposAsignados { get; set; }
-    public List<PagoDto>? Pagos { get; set; }
-    public LoginDto? Usuario { get; set; }
+    public List<Guid>? EquiposIds { get; set; }
     
 }

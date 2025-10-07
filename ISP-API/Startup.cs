@@ -45,6 +45,8 @@ public class Startup
         // add custom services
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<IPlanService, PlanService>();
+        services.AddTransient<IEquipoService, EquipoService>();
+        services.AddTransient<IClienteService, ClienteService>();
         
         // AutoMapper
         services.AddAutoMapper(typeof(Startup));
