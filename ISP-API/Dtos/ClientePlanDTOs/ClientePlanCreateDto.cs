@@ -6,12 +6,8 @@ namespace ISP_API.Dtos.ClientePlanDTOs;
 
 public class ClientePlanCreateDto
 {
-    [Display(Name = "Cliente")]
-    [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+    [Required]
     public Guid ClienteId { get; set; }
-    [Display(Name = "Plan")]
-    [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+    [Required]
     public Guid PlanId { get; set; }
-    public ClienteDto? Cliente { get; set; }
-    public PlanDto? Plan { get; set; }
 }

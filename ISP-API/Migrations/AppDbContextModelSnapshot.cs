@@ -91,18 +91,19 @@ namespace ISP_API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<Guid>("ClienteId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cliente_id");
+
                     b.Property<Guid>("PlanId")
                         .HasColumnType("uuid")
                         .HasColumnName("plan_id");
 
-                    b.Property<Guid?>("cliente_id")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PlanId");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("cliente_id");
+                    b.HasIndex("PlanId");
 
                     b.ToTable("ClientePlan");
                 });
@@ -476,15 +477,17 @@ namespace ISP_API.Migrations
 
             modelBuilder.Entity("ISP_API.Entities.ClientePlanEntity", b =>
                 {
+                    b.HasOne("ISP_API.Entities.ClienteEntity", "Cliente")
+                        .WithMany("PlanesContratados")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ISP_API.Entities.PlanEntity", "Plan")
                         .WithMany("Clientes")
                         .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ISP_API.Entities.ClienteEntity", "Cliente")
-                        .WithMany("PlanesContratados")
-                        .HasForeignKey("cliente_id");
 
                     b.Navigation("Cliente");
 

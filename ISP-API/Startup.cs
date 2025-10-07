@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using ISP_API.Data;
 using ISP_API.Entities;
 using ISP_API.Services;
@@ -47,6 +48,7 @@ public class Startup
         services.AddTransient<IPlanService, PlanService>();
         services.AddTransient<IEquipoService, EquipoService>();
         services.AddTransient<IClienteService, ClienteService>();
+        services.AddTransient<IPlanClienteService, PlanClienteService>();
         
         // AutoMapper
         services.AddAutoMapper(typeof(Startup));
@@ -54,7 +56,10 @@ public class Startup
 
 
         // Services
-        services.AddControllers();
+        services.AddControllers().AddJsonOptions(options =>
+        {
+           options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; 
+        });
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
@@ -94,12 +99,11 @@ public class Startup
         // Configure the HTTP request pipeline.
        
         app.UseSwagger(); 
-        if(env.IsDevelopment())
-        {
+        
             app.UseSwaggerUI();
             app.UseDeveloperExceptionPage();
-        }
-        app.UseHttpsRedirection();
+        
+        //app.UseHttpsRedirection();
         app.MapScalarApiReference(opt =>
         {
             opt.Title = "Ejemplo escalar";

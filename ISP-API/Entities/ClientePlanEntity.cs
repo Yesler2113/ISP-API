@@ -9,10 +9,15 @@ public class ClientePlanEntity
     [Key]
     [Column("id")]
     public Guid Id { get; set; }
-    [ForeignKey("cliente_id")]
+    
+    [Column("cliente_id")]
+    public Guid ClienteId { get; set; }
+    
+    [ForeignKey("ClienteId")]
     public ClienteEntity? Cliente { get; set; }
     [Column("plan_id")]
     public Guid PlanId { get; set; }
+    
     [ForeignKey("PlanId")]
     public PlanEntity? Plan { get; set; }
 }
