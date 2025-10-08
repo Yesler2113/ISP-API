@@ -4,6 +4,8 @@ namespace ISP_API.Dtos.PagoDetalleDTOs;
 
 public class PagoDetalleCreateDto
 {
-    [Display(Name = "Pago monto")]
+    [Required]
+    public Guid PlanId { get; set; }
+    [Required]
     public decimal Monto { get; set; }
 }

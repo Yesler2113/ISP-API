@@ -31,6 +31,11 @@ public class ClienteEntity
     public decimal CostoInstalacion { get; set; }
     [Column("fecha_pago")]
     public DateTime FechaPago { get; set; } = DateTime.UtcNow; //dia de facturacion o corte
+    [Column("saldo_actual")]
+    public decimal SaldoActual { get; set; } = 0;
+
+    [Column("proximo_pago")]
+    public DateTime ProximoPago { get; set; } = DateTime.UtcNow.AddMonths(1);
     //relacion con Planes
     [InverseProperty("Cliente")]
     public ICollection<ClientePlanEntity>? PlanesContratados { get; set; }

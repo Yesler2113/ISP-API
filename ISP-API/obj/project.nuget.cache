@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZwxVvnnAx7U=",
+  "dgSpecHash": "IofL3rWpSjY=",
   "success": true,
   "projectFilePath": "/home/yesler/Documentos/ISP PROJECT/ISP-API/ISP-API/ISP-API.csproj",
   "expectedPackageFiles": [
@@ -70,6 +70,7 @@
     "/home/yesler/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/home/yesler/.nuget/packages/npgsql/8.0.0/npgsql.8.0.0.nupkg.sha512",
     "/home/yesler/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.0/npgsql.entityframeworkcore.postgresql.8.0.0.nupkg.sha512",
+    "/home/yesler/.nuget/packages/questpdf/2025.12.0-alpha1/questpdf.2025.12.0-alpha1.nupkg.sha512",
     "/home/yesler/.nuget/packages/scalar.aspnetcore/2.8.8/scalar.aspnetcore.2.8.8.nupkg.sha512",
     "/home/yesler/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "/home/yesler/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
