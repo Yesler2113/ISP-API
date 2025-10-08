@@ -66,6 +66,14 @@ namespace ISP_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("nombre");
 
+                    b.Property<DateTime>("ProximoPago")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("proximo_pago");
+
+                    b.Property<decimal>("SaldoActual")
+                        .HasColumnType("numeric")
+                        .HasColumnName("saldo_actual");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("text")

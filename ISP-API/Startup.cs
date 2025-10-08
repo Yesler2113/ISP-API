@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using QuestPDF.Infrastructure;
 using Scalar.AspNetCore;
 
 namespace ISP_API;
@@ -49,11 +50,14 @@ public class Startup
         services.AddTransient<IEquipoService, EquipoService>();
         services.AddTransient<IClienteService, ClienteService>();
         services.AddTransient<IPlanClienteService, PlanClienteService>();
+        services.AddTransient<IPagoService, PagoService>();
         
         // AutoMapper
         services.AddAutoMapper(typeof(Startup));
         
-
+        //add licence questpdf
+        QuestPDF.Settings.License = LicenseType.Community;
+        
 
         // Services
         services.AddControllers().AddJsonOptions(options =>
