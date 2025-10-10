@@ -1,9 +1,11 @@
 using ISP_API.Data;
 using ISP_API.Services.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ISP_API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/clientesDetalles")]
 public class ClientePlanController : ControllerBase

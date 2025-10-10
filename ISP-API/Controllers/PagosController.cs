@@ -1,10 +1,13 @@
 using ISP_API.Data;
 using ISP_API.Dtos.PagoDTOs;
 using ISP_API.Services.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ISP_API.Controllers;
+
+[Authorize]
 [ApiController]
 [Route("api/pagos")]
 public class PagosController : ControllerBase
