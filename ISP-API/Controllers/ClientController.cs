@@ -2,11 +2,12 @@ using ISP_API.Data;
 using ISP_API.Dtos.ClienteDTOs;
 using ISP_API.Entities;
 using ISP_API.Services.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ISP_API.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("api/clientes")]
 public class ClientController : ControllerBase

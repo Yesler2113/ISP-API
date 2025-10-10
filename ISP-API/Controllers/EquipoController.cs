@@ -1,9 +1,11 @@
 using ISP_API.Dtos.EquipoDTOs;
 using ISP_API.Services.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ISP_API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/equipos")]
 public class EquipoController : ControllerBase
