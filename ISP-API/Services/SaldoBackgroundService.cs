@@ -36,7 +36,7 @@ public class SaldoBackgroundService : BackgroundService
                 _logger.LogError(ex, "❌ Error al actualizar los saldos");
             }
 
-            // Espera 24 horas (puedes ajustar el tiempo para pruebas)
+            // se actualiza cada 24 horas
             await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
         }
     }

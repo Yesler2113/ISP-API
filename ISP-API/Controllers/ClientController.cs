@@ -99,16 +99,16 @@ public class ClientController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCliente(Guid id, [FromBody] ClienteDto model)
+    public async Task<IActionResult> EditarCliente(Guid id, [FromBody] ClienteUpdateDto dto)
     {
-        model.Id = id;
-        var response = await _clienteService.UpdateClienteAsync(model);
-        if (response.Status)
-        {
-            return Ok(response);
-        }
-        return BadRequest(response);
+        var result = await _clienteService.EditarClienteAsync(id, dto);
+
+        if (!result.Status)
+            return StatusCode(result.StatusCode, result.Message);
+
+        return Ok(result);
     }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCliente(Guid id)

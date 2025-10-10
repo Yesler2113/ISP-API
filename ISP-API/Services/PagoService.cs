@@ -65,6 +65,9 @@ public class PagoService : IPagoService
         }
         _context.Pagos.Add(pago);
         await _context.SaveChangesAsync();
+        
+        //generar el recibo de pago en pdf
+        byte[] pdfBytes = await GenerarReciboPagoAsync(pago.Id);
 
         return new ResponseDto<PagoEntity>
         {
@@ -182,7 +185,7 @@ public class PagoService : IPagoService
                 });
 
                 // ======= PIE DE PÁGINA =======
-                page.Footer().AlignCenter().PaddingTop(10).Text("Gracias por su pago - StellarSoft ISP © 2025")
+                page.Footer().AlignCenter().PaddingTop(10).Text("Gracias por su pago. Factura sin Valor Fiscal - StellarSoft ISP © 2025")
                     .FontSize(10)
                     .Italic()
                     .FontColor(Colors.Grey.Darken1);

@@ -4,6 +4,7 @@ using ISP_API.Dtos;
 using ISP_API.Dtos.ClienteDTOs;
 using ISP_API.Entities;
 using ISP_API.Services.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ISP_API.Services;
 
@@ -103,6 +104,85 @@ public class ClienteService : IClienteService
             Data = clienteDto
         };
     }
+    
+    public async Task<ResponseDto<ClienteEntity>> EditarClienteAsync(Guid id, ClienteUpdateDto dto)
+{
+    var cliente = await _context.Clientes
+        .Include(c => c.PlanesContratados)
+        .Include(c => c.EquiposAsignados)
+        .FirstOrDefaultAsync(c => c.Id == id);
+
+    if (cliente == null)
+    {
+        return new ResponseDto<ClienteEntity>
+        {
+            Status = false,
+            StatusCode = 404,
+            Message = "Cliente no encontrado."
+        };
+    }
+
+    // 🔹 Actualizar los datos básicos
+    cliente.CodigoCliente = dto.CodigoCliente;
+    cliente.Nombre = dto.Nombre;
+    cliente.Apellido = dto.Apellido;
+    cliente.Identidad = dto.Identidad;
+    cliente.Direccion = dto.Direccion;
+    cliente.Telefono = dto.Telefono;
+    cliente.FechaInicio = dto.FechaInicio;
+    cliente.CostoInstalacion = dto.CostoInstalacion;
+
+    // 🔹 Eliminar relaciones anteriores antes de agregar las nuevas
+    var planesActuales = await _context.Planes
+        .Where(cp => cp.ClienteId == cliente.Id)
+        .ToListAsync();
+    _context.Planes.RemoveRange(planesActuales);
+
+    var equiposActuales = await _context.EquipoClientes
+        .Where(eq => eq.ClienteId == cliente.Id)
+        .ToListAsync();
+    _context.EquipoClientes.RemoveRange(equiposActuales);
+
+    // 🔹 Actualizar relaciones (solo si se envían)
+    if (dto.PlanesContratadosIds != null && dto.PlanesContratadosIds.Any())
+    {
+        foreach (var planId in dto.PlanesContratadosIds.Distinct())
+        {
+            _context.Planes.Add(new ClientePlanEntity
+            {
+                Id = Guid.NewGuid(),
+                ClienteId = cliente.Id,
+                PlanId = planId
+            });
+        }
+    }
+
+    if (dto.EquiposIds != null && dto.EquiposIds.Any())
+    {
+        foreach (var equipoId in dto.EquiposIds.Distinct())
+        {
+            _context.EquipoClientes.Add(new EquipoClienteEntity
+            {
+                Id = Guid.NewGuid(),
+                ClienteId = cliente.Id,
+                EquipoId = equipoId // asegúrate de que exista esta propiedad si la relación es directa
+            });
+        }
+    }
+
+    _context.Clientes.Update(cliente);
+    await _context.SaveChangesAsync();
+
+    return new ResponseDto<ClienteEntity>
+    {
+        Status = true,
+        StatusCode = 200,
+        Message = "Cliente actualizado correctamente.",
+        Data = cliente
+    };
+}
+
+
     
     public async Task<ResponseDto<ClienteDto>> DeleteClienteAsync(Guid id)
     {

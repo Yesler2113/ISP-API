@@ -9,5 +9,5 @@ public class EquipoDto
     public string Descripcion { get; set; } = string.Empty;
     public int Cantidad { get; set; }
 
-    public List<EquipoClienteDto>? Clientes { get; set; }
+    //public List<EquipoClienteDto>? Clientes { get; set; }
 }
