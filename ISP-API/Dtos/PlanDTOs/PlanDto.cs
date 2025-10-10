@@ -10,5 +10,5 @@ public class PlanDto
     public decimal Precio { get; set; }
     public string Tipo { get; set; } = string.Empty;
 
-    public List<ClientePlanDto>? Clientes { get; set; }
+   // public List<ClientePlanDto>? Clientes { get; set; }
 }

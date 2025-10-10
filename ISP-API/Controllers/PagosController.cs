@@ -22,7 +22,8 @@ public class PagosController : ControllerBase
     {
         var result = await _pagoService.RegistrarPagoAsync(dto);
         if (!result.Status) return BadRequest(result);
-        return Ok(result);
+        var pdfBytes = await _pagoService.GenerarReciboPagoAsync(result.Data!.Id);
+        return File(pdfBytes, "application/pdf", $"Recibo_{result.Data.Id}.pdf");
     }
 
     [HttpGet("recibo/{pagoId}")]

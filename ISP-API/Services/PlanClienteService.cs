@@ -39,7 +39,8 @@ public class PlanClienteService : IPlanClienteService
                 ClienteDireccion = g.First().Cliente!.Direccion,
                 ClienteTelefono = g.First().Cliente!.Telefono,
                 ClienteCodigo = g.First().Cliente!.CodigoCliente,
-                FechaPago = g.First().Cliente!.FechaPago,
+                Saldo = g.First().Cliente!.SaldoActual,
+                FechaPago = g.First().Cliente!.ProximoPago,
                 // 🔹 Lista de planes contratados
                 Planes = g.Select(cp => new
                 {
