@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ISP_API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/prueba")]
 public class PruebaController : ControllerBase
 {
     private readonly AppDbContext _context;
